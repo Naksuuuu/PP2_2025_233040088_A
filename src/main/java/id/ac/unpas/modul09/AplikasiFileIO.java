@@ -29,6 +29,7 @@ public class AplikasiFileIO extends JFrame {
 
         // Inisialisasi Komponen
         textArea = new JTextArea();
+        textArea.setFont(new Font("poppins", Font.PLAIN, 14));
         fileChooser = new JFileChooser();
 
         // Membaca file otomatis saat aplikasi dibuka
@@ -84,7 +85,10 @@ public class AplikasiFileIO extends JFrame {
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
             textArea.setText("");
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            BufferedReader reader = null;
+            try  {
+                reader = new BufferedReader(new FileReader(file));
+
                 String line;
                 while ((line = reader.readLine()) != null) {
                     textArea.append(line + "\n");
